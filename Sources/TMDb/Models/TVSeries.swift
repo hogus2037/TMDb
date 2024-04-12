@@ -267,7 +267,7 @@ extension TVSeries {
         case numberOfSeasons
         case numberOfEpisodes
         case seasons
-        case genres
+        case genres = "genre_ids"
         case originCountry
         case posterPath
         case backdropPath
@@ -300,7 +300,8 @@ extension TVSeries {
         self.numberOfSeasons = try container.decodeIfPresent(Int.self, forKey: .numberOfSeasons)
         self.numberOfEpisodes = try container.decodeIfPresent(Int.self, forKey: .numberOfEpisodes)
         self.seasons = try container.decodeIfPresent([TVSeason].self, forKey: .seasons)
-        self.genres = try container.decodeIfPresent([Genre].self, forKey: .genres)
+        let genres = try container.decodeIfPresent([Int].self, forKey: .genres)
+        self.genres = genres?.compactMap({ Genre(id: $0)})
 
         // Need to deal with empty strings - date decoding will fail with an empty string
         let firstAirDateString = try container.decodeIfPresent(String.self, forKey: .firstAirDate)

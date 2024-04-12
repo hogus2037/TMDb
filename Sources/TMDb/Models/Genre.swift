@@ -32,7 +32,7 @@ public struct Genre: Identifiable, Codable, Equatable, Hashable, Sendable {
     ///
     /// Genre name.
     ///
-    public let name: String
+    public let name: String?
 
     ///
     /// Creates a genre object.
@@ -41,7 +41,7 @@ public struct Genre: Identifiable, Codable, Equatable, Hashable, Sendable {
     ///    - id: Genre Identifier.
     ///    - name: Genre name.
     ///
-    public init(id: Int, name: String) {
+    public init(id: Int, name: String? = nil) {
         self.id = id
         self.name = name
     }

@@ -241,7 +241,7 @@ extension Movie {
         case originalLanguage
         case overview
         case runtime
-        case genres
+        case genres = "genre_ids"
         case releaseDate
         case posterPath
         case backdropPath
@@ -271,7 +271,8 @@ extension Movie {
         self.originalLanguage = try container.decodeIfPresent(String.self, forKey: .originalLanguage)
         self.overview = try container.decodeIfPresent(String.self, forKey: .overview)
         self.runtime = try container.decodeIfPresent(Int.self, forKey: .runtime)
-        self.genres = try container.decodeIfPresent([Genre].self, forKey: .genres)
+        let genres = try container.decodeIfPresent([Int].self, forKey: .genres)
+        self.genres = genres?.compactMap({ Genre(id: $0)})
 
         // Need to deal with empty strings - date decoding will fail with an empty string
         let releaseDateString = try container.decodeIfPresent(String.self, forKey: .releaseDate)
