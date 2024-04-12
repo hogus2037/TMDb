@@ -241,7 +241,7 @@ extension Movie {
         case originalLanguage
         case overview
         case runtime
-        case genres = "genre_ids"
+        case genres = "genreIds"
         case releaseDate
         case posterPath
         case backdropPath

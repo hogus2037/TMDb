@@ -267,7 +267,7 @@ extension TVSeries {
         case numberOfSeasons
         case numberOfEpisodes
         case seasons
-        case genres = "genre_ids"
+        case genres = "genreIds"
         case originCountry
         case posterPath
         case backdropPath
